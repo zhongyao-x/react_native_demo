@@ -1,10 +1,10 @@
-package com.vanthink.mobile_manager_platform_rn;
+package com.vanthink.mobile_manager_platform_rn.activity.rn;
 
 import com.facebook.react.ReactActivity;
 
 import javax.annotation.Nullable;
 
-public class RNHelloWorldActivity extends ReactActivity {
+public class HelloWorldActivity extends ReactActivity {
 
     @Nullable
     @Override

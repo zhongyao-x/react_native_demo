@@ -122,6 +122,8 @@ allprojects {
         
 ### RN to Native   
 
+...
+
 ## 调试
 
 1.在根目录执行 npm start 启动服务
@@ -148,8 +150,83 @@ a.(在rn页面中)摇一摇触发dev菜单 选择dev settings 选中菜单 Debug
 b.或者 连接usb 输入 adb reverse tcp:8081 tcp:8081 (代理设备8081端口)  
 ```
 
-### RN 和 Android 通信
+## RN 和 Android 通信
 
+### rn 调用原生方法
+
+1.新建HellWorldModule类 继承 ReactContextBaseJavaModule
+```java'
+@Override
+public String getName() {
+    return MODULE_NAME;
+}
+
+@ReactMethod
+public void showToast(String msg) {
+    Toast.makeText(mContext, "andorid:" + msg, Toast.LENGTH_SHORT).show();
+}
 ```
-no content
+被RN调用的方法一定要加上注解 @ReactMethod
+
+MODULE_NAME 一会儿会在RN中使用
+
+2.新建CommPackage类 实现 ReactPackage
+```java
+public class CommPackage implements ReactPackage {
+
+    private HelloWorldModule mHelloWorldModule;
+
+    @Override
+    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+        List<NativeModule> modules = new ArrayList<>();
+        mHelloWorldModule = new HelloWorldModule(reactContext);
+        modules.add(mHelloWorldModule);
+        return modules;
+    }
+
+    @Override
+    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+        return Collections.emptyList();
+    }
+}
 ```
+将 HelloWorldModule 添加到集合中返回
+
+3.在MyApplication中注册 CommPackage
+```java
+private static final CommPackage mCommPackage = new CommPackage(); // 通讯类
+private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+            return BuildConfig.DEBUG;
+        }
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+            return Arrays.<ReactPackage>asList(
+                    new MainReactPackage(),
+                    mCommPackage  // 嘿! 看这儿
+            );
+        }
+    };
+```
+
+4.在js中调用 引入 NativeModules (部分代码，具体请看index.android.js)
+```
+import {
+    ...
+    NativeModules
+} from 'react-native'
+
+class HelloWorld {
+    ...
+    callNatShowToast() {
+        NativeModules.mHelloWorldModule.showToast('红鲤鱼与绿鲤鱼与驴');
+     }
+    ...
+}
+```
+
+### rn 调用原生方法 (callback 回调)
+
+### rn 调用原生方法 (返回 promise)

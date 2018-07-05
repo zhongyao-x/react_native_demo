@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RNHelloWorldActivity"/>
+        <activity android:name=".activity.rn.HelloWorldActivity"/>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 

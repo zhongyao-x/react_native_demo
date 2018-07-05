@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.vanthink.mobile_manager_platform_rn.activity.rn.HelloWorldActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toRNPage(View view){
-        startActivity(new Intent(this, RNHelloWorldActivity.class));
+        startActivity(new Intent(this, HelloWorldActivity.class));
     }
 }
