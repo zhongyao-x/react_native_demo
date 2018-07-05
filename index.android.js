@@ -10,7 +10,7 @@ class HelloWorld extends Component {
         return (
             <View>
                 <Text>
-                    HelloWorld
+                    HelloWorld nimabi
                 </Text>
             </View>
         );

@@ -61,6 +61,7 @@
     
 8.到这里基本上就ok了接下来说下RN与Native之间的交互，正常运行请继续往下看
 ```
+
 ### RN 和 Android 之间页面跳转
 
 ```
@@ -82,6 +83,23 @@
             a.新建 app/src/main/assets 文件夹 
             b.执行npm run bundle-android(上一步我们在script中添加的命令)
 二.RN to Native   
+```
+
+### 调试
+```
+1.在根目录执行 npm start
+2.在mainifests中注册 <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+2.启动应用 在RN页面 打开调试菜单 Android模拟器对应的则是Command⌘ + M（windows上可能是F1或者F2）。
+3.更改你的index.android.js 文件 试一下reload(这时会访问你的8081端口来加载最新的bunle文件)
+
+以下问题解决办法
+    1) Clould not connect devlopment server
+        a.检查是否添加 android.permission.INTERNET 网络权限
+        b.浏览器执行 http://localhost:8081/index.android.bundle?platform=android 是否能正常加载bundel
+        如果你是真机
+        a.(在rn页面中)摇一摇触发dev菜单 选择dev settings 选中菜单 Debug server host & port fordevice
+            (需在统一局域网内)输入你服务所在ip地址 如 192.168.1.123:8081
+        b.或者 连接usb 输入 adb reverse tcp:8081 tcp:8081 (代理设备8081端口)      
 ```
 
 ### RN 和 Android 通信
