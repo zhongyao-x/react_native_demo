@@ -238,4 +238,4 @@ class HelloWorld {
 ### rn 调用原生方法 (返回 promise)
 请看项目
 
-![GitHub](http://img1.vued.vanthink.cn/vued656b397cfd8facd7e9fdcb477c4e98a1.png "GitHub,Social Coding")
+<img src="http://img1.vued.vanthink.cn/vued656b397cfd8facd7e9fdcb477c4e98a1.png" alt="GitHub" title="GitHub,Social Coding" width="300" height="640" />
