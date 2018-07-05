@@ -18,7 +18,18 @@ script {
 }
 ```
 
-配置bundle-android时注意你的项目结构
+`--platform：平台`
+
+`--dev：开发模式`
+
+`--entry-file：条目文件`
+
+`--bundle-output：bundle文件生成的目录`
+
+`--assets-dest：资源文件生成的目录`
+
+
+> 配置bundle-android时注意你的项目结构
 
 app/src/main
 
