@@ -156,14 +156,18 @@ b.或者 连接usb 输入 adb reverse tcp:8081 tcp:8081 (代理设备8081端口)
 
 1.新建HellWorldModule类 继承 ReactContextBaseJavaModule
 ```java'
-@Override
-public String getName() {
-    return MODULE_NAME;
-}
-
-@ReactMethod
-public void showToast(String msg) {
-    Toast.makeText(mContext, "andorid:" + msg, Toast.LENGTH_SHORT).show();
+public class HelloWorldModule extends ReactContextBaseJavaModule {
+    private HelloWorldModule mHelloWorldModule;
+    
+    @Override
+    public String getName() {
+        return MODULE_NAME;
+    }
+    
+    @ReactMethod
+    public void showToast(String msg) {
+        Toast.makeText(mContext, "andorid:" + msg, Toast.LENGTH_SHORT).show();
+    }
 }
 ```
 被RN调用的方法一定要加上注解 @ReactMethod
@@ -193,22 +197,24 @@ public class CommPackage implements ReactPackage {
 将 HelloWorldModule 添加到集合中返回
 
 3.在MyApplication中注册 CommPackage
+
 ```java
 private static final CommPackage mCommPackage = new CommPackage(); // 通讯类
-private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-        @Override
-        public boolean getUseDeveloperSupport() {
-            return BuildConfig.DEBUG;
-        }
 
-        @Override
-        protected List<ReactPackage> getPackages() {
-            return Arrays.<ReactPackage>asList(
-                    new MainReactPackage(),
-                    mCommPackage  // 嘿! 看这儿
-            );
-        }
-    };
+private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+    @Override
+    public boolean getUseDeveloperSupport() {
+        return BuildConfig.DEBUG;
+    }
+
+   @Override
+    protected List<ReactPackage> getPackages() {
+        return Arrays.<ReactPackage>asList(
+                new MainReactPackage(),
+                mCommPackage  // 嘿! 看这儿
+        );
+    }
+};
 ```
 
 4.在js中调用 引入 NativeModules (部分代码，具体请看index.android.js)
@@ -228,5 +234,6 @@ class HelloWorld {
 ```
 
 ### rn 调用原生方法 (callback 回调)
-
+请看项目
 ### rn 调用原生方法 (返回 promise)
+请看项目
