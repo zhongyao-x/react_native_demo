@@ -237,3 +237,5 @@ class HelloWorld {
 请看项目
 ### rn 调用原生方法 (返回 promise)
 请看项目
+
+![GitHub](http://img1.vued.vanthink.cn/vued656b397cfd8facd7e9fdcb477c4e98a1.png "GitHub,Social Coding")
