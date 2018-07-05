@@ -1,5 +1,3 @@
-# react-native 安卓相关 总结
-
 ## RN 集成到现有应用
 
 1.创建android项目
@@ -32,7 +30,7 @@ compileSdkVersion 23 (设置为23 因rn依赖包中使用了23的api)
 targetSdkVersion 23
 ```
 
-`-- update -- 2018-7-5`
+`-- update 2018-7-5 --`
 
 今天发现升到0.56了
 
@@ -80,12 +78,10 @@ allprojects {
     }
 }
 ```
-    
-8.到这里基本上就ok了接下来说下RN与Native之间的交互，正常运行后请继续往下看
 
 ## RN 和 Android 之间页面跳转
 
-### 一.Native to RN
+### Native to RN
 
 1.创建MyApplication (不细说请看代码)
 ```
@@ -113,7 +109,7 @@ allprojects {
          
     b.执行npm run bundle-android(上一步我们在script中添加的命令)
         
-### 二.RN to Native   
+### RN to Native   
 
 ## 调试
 
