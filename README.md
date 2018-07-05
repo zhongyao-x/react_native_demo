@@ -1,10 +1,10 @@
-#react-native 安卓相关 总结
+# react-native 安卓相关 总结
 
 ## RN 集成到现有应用
 
-### 1.创建android项目
+1.创建android项目
 
-### 2.项目根初始化npm
+2.项目根初始化npm
 
 ```
 npm init
@@ -12,7 +12,7 @@ yarn add react
 yarn add react-native
 ```
 
-### 3.配置 package.json
+3.配置 package.json
 ```
 script {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -26,7 +26,7 @@ app/src/main
 
 android/app/src/main
 
-### 4.配置 app => gradle
+4.配置 app => gradle
 ```
 compileSdkVersion 23 (设置为23 因rn依赖包中使用了23的api)
 targetSdkVersion 23
@@ -48,7 +48,7 @@ compileSdkVersion 27
 targetSdkVersion 27
 ```
 
-### 5.在 app => build.gradle 添加依赖包
+5.在 app => build.gradle 添加依赖包
 ```
 dependencies {
     implementation 'com.facebook.react:react-native:+'
@@ -56,7 +56,7 @@ dependencies {
 }
 ```
     
-### 6.添加ndk支持
+6.添加ndk支持
 ```
 android {
     defaultConfig {
@@ -67,7 +67,7 @@ android {
     }
 }
 ```
-### 7.在 project => build.gradle 中添加如下(关联node_modules)
+7.在 project => build.gradle 中添加如下(关联node_modules)
 ```
 allprojects {
     repositories{
@@ -81,27 +81,27 @@ allprojects {
 }
 ```
     
-### 8.到这里基本上就ok了接下来说下RN与Native之间的交互，正常运行后请继续往下看
+8.到这里基本上就ok了接下来说下RN与Native之间的交互，正常运行后请继续往下看
 
 ## RN 和 Android 之间页面跳转
 
 ### 一.Native to RN
 
-#### 1.创建MyApplication (不细说请看代码)
+1.创建MyApplication (不细说请看代码)
 ```
 <application 
     android:name=".MyApplication">
     ....
 </application>
 ```
-#### 2.创建RNHelloWorldActivity 继承 ReactActivity
+2.创建RNHelloWorldActivity 继承 ReactActivity
 重写 getMainComponentName 方法，返回你在index.android.js中注册的组件名
 
 `-- 我这里是HelloWorld --`
 
     AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
     
-#### 3.在MainActivity中跳转到这个页面试一试吧
+3.在MainActivity中跳转到这个页面试一试吧
 
 以下问题解决办法
 
