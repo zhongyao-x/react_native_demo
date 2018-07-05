@@ -1,4 +1,8 @@
-## RN 集成到现有应用
+## RN（持续更新中）
+
+<img src="http://img1.vued.vanthink.cn/vued656b397cfd8facd7e9fdcb477c4e98a1.png" alt="GitHub" title="GitHub,Social Coding" width="360" height="560" />
+
+
 
 1.创建android项目
 
@@ -238,4 +242,3 @@ class HelloWorld {
 ### rn 调用原生方法 (返回 promise)
 请看项目
 
-<img src="http://img1.vued.vanthink.cn/vued656b397cfd8facd7e9fdcb477c4e98a1.png" alt="GitHub" title="GitHub,Social Coding" width="360" height="560" />
