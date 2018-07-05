@@ -1,68 +1,89 @@
-### react-native 安卓相关 总结
----
+#react-native 安卓相关 总结
 
-### RN 集成到现有应用
+## RN 集成到现有应用
+
+### 1.创建android项目
+
+### 2.项目根初始化npm
+
 ```
-1.创建android项目
+npm init
+yarn add react
+yarn add react-native
+```
 
-2.项目根初始化npm
-    npm init
-    yarn add react
-    yarn add react-native
-
-3.配置package.json
-   script {
+### 3.配置package.json
+```
+script {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output app/src/main/assets/index.android.bundle --assets-dest app/src/main/res/"
-   }
-   配置bundle-android时注意你的项目结构
-    app/src/main
-    android/app/src/main
+}
+```
 
-4.配置 app => gradle
-    compileSdkVersion 23 (设置为23 因rn依赖包中使用了23的api)
-    targetSdkVersion 23
+配置bundle-android时注意你的项目结构
 
-    -- update -- 2018-7-5
-    今天搭项目时发现升到0.56了
-    "react": "^16.4.1",
-    "react-native": "^0.56.0"
-    然后用原来的23出现版本的问题于是我就直接上27(8.1)了
-    compileSdkVersion 27
-    targetSdkVersion 27
+app/src/main
 
-5.在 app => build.gradle 添加依赖包
-    dependencies ｛
+android/app/src/main
+
+### 4.配置 app => gradle
+```
+compileSdkVersion 23 (设置为23 因rn依赖包中使用了23的api)
+targetSdkVersion 23
+```
+
+`-- update -- 2018-7-5`
+
+今天发现升到0.56了
+
+```
+"react": "^16.4.1",
+"react-native": "^0.56.0"
+```
+
+这个版本貌似不能用23(API) 我换成了27
+
+```
+compileSdkVersion 27
+targetSdkVersion 27
+```
+
+### 5.在 app => build.gradle 添加依赖包
+```
+dependencies ｛
         implementation 'com.facebook.react:react-native:+'
         ...
     ｝
+```
     
-6.添加ndk支持
-    android ｛
-        defaultConfig ｛
-            ...
-            ndk {
-                abiFilters "armeabi-v7a", "x86"
-            }
-        ｝
-    ｝
-    
-7.在project => build.gradle 中添加如下(关联node_modules)
-    allprojects {
-        repositories{
-            ...
-            maven {
-                url "$rootDir/node_modules/react-native/android"
-                // url "$rootDir/../node_modules/react-native/android"
-                // 根据目录结构选择
-            }
+### 6.添加ndk支持
+```
+android {
+    defaultConfig {
+        ...
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
         }
     }
-    
-8.到这里基本上就ok了接下来说下RN与Native之间的交互，正常运行请继续往下看
+}
 ```
+### 7.在project => build.gradle 中添加如下(关联node_modules)
+```
+allprojects {
+    repositories{
+        ...
+        maven {
+            url "$rootDir/node_modules/react-native/android"
+            // url "$rootDir/../node_modules/react-native/android"
+            // 根据目录结构选择
+        }
+    }
+}
+```
+    
+### 8.到这里基本上就ok了接下来说下RN与Native之间的交互，正常运行请继续往下看
 
-### RN 和 Android 之间页面跳转
+## RN 和 Android 之间页面跳转
 
 ```
 一.Native to RN
@@ -87,7 +108,7 @@
 
 ### 调试
 ```
-1.在根目录执行 npm start
+1.在根目录执行 npm start 启动服务
 2.在mainifests中注册 <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 2.启动应用 在RN页面 打开调试菜单 Android模拟器对应的则是Command⌘ + M（windows上可能是F1或者F2）。
 3.更改你的index.android.js 文件 试一下reload(这时会访问你的8081端口来加载最新的bunle文件)
