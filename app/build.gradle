@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String","BUNDLE_VERSION",'"1.0.0"' // 随包bundle文件版本号
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
